@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<script>
+
+    let win = 0;
+    let lose = 0;
+    let draw = 0;
+    let playerSelection = "";
+    const computerSelection = computerPlay();
+
+    //1 = rock, 2 = paper, 3 = scissors
+    function computerPlay(){
+        randnum = Math.floor((Math.random() * 3) + 1);
+        if(randnum == 1)return "rock";
+        else if(randnum == 2)return "paper";
+        else return "scissors";
+    }
+
+    function playRound(playerSelection, computerSelection){
+        playerSelection = playerSelection.toLowerCase();
+        while(true){
+            playerSelection = prompt("Enter Rock, Paper, or Scissors");
+            if(playerSelection == "rock" || playerSelection == "paper" || playerSelection == "scissors")break;
+            else(console.log("Select a valid choice"));
+        } 
+        if(playerSelection == computerSelection){
+            draw++;
+            return "It's a tie! Both players selected " + playerSelection;
+        }
+        else if(playerSelection == "rock" && computerSelection == "paper" || playerSelection == "paper" && computerSelection == "scissors" || playerSelection == "scissors" && computerSelection == "rock"){
+            lose++;
+            return "You Lose! " + computerSelection + " beats " + playerSelection;
+        }
+        else{
+            win++;
+            return "You Win! " + playerSelection + " beats " + computerSelection;
+        }
+    }
+
+    function game(){
+        for(i = 0; i<5; i++){
+            console.log(playRound(playerSelection, computerSelection));           
+        }
+        if(win>lose)return "You Win! You won " + win + " games, the computer won " + lose + " games, and you drew " + draw + " games!"
+        else return "You Lose! You won " + win + " games, the computer won " + lose + " games, and you drew " + draw + " games!"
+        
+    }
+
+    
+    console.log(game());
+
+
+
+</script>
